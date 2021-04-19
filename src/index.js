@@ -5,4 +5,3 @@ import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/confirm/dist/PNotifyConfirm.css';
 
 
-fetchCountries(searchQuery);
