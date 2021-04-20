@@ -11,6 +11,8 @@ searchForm.addEventListener(
 );
 
 function onSearch(e) {
+  
+  
   if (e.length >= 1) {
     fetchCountries(e)
       .then(country => {
@@ -18,13 +20,15 @@ function onSearch(e) {
           return renderListCountry(country);
         } else if (country.length === 1) {
           return renderCountryCard(country);
+
         }
         error({
           text: 'Too many matches found. Please enter a more specific query',
+          delay: 2500,
         });
       })
       .catch(onFetchError);
-  }
+  } cardsConteiner.innerHTML = '';
 }
 
 const BASE_URL = 'https://restcountries.eu/rest/v2/name/';
@@ -40,15 +44,20 @@ export default function fetchCountries(searchQuery) {
 }
 
 function renderCountryCard(countries) {
+  cardsConteiner.innerHTML = '';
   const markup = countriesCards(countries);
   cardsConteiner.innerHTML = markup;
 }
 
 function renderListCountry(countries) {
+  cardsConteiner.innerHTML = '';
   const markup = listCountry(countries);
   cardsConteiner.innerHTML = markup;
 }
 
 function onFetchError() {
-  alert('Something wrong we have some problem');
-}
+  alert({
+    text: 'Something wrong we have some problem',
+    delay: 2500,
+  });
+  }
